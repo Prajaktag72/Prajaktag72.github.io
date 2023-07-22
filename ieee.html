@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+<html lang="en" name="sign_in" dir="ltr">
+<!-- template name: html.form.login.template.html -->
+<head>
+<base href="https://services10.ieee.org/"/>
+<meta charset="utf-8">
+<title>IEEE Collabratec&reg; - Sign in</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="https://ieee-collabratec.ieee.org/assets/ping/js/libs/bootstrap/bootstrap.css" rel="stylesheet">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="shortcut icon" href="https://ieee-collabratec.ieee.org/assets/ping/img/favicon.ico">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!-- /Bootstrap -->
+
+<!-- jQuery.mmenu -->
+<link rel="stylesheet" type="text/css" href="https://ieee-collabratec.ieee.org/assets/ping/js/libs/mmenu/jquery.mmenu.all.css">
+<!-- /jQuery.mmenu -->
+
+<!-- compiled less CSS -->
+<link rel="stylesheet" type="text/css" href="https://ieee-collabratec.ieee.org/assets/ping/css/style.css">
+<!-- /compiled less CSS -->
+<!-- Fonts -->
+	<link href="/../assets/ppct/css/open-sans/font.css" rel="stylesheet">
+	<link href="/../assets/ppct/css/font-awesome/less/font-awesome.css" rel="stylesheet">
+<!-- Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://ieee-collabratec.ieee.org/assets/ping/css/ppctlogin.css?ver=2">
+    <script>
+    var ppctSignIn={
+            postOk:function ()
+            {
+                $(".ppct-loginerror").hide();
+				var curUsername = document.forms[0].username.value ;
+
+                if(curUsername == "" || curUsername.trim() == "" ) {
+                     $("#ppct-loginerror").show();
+                    return false;
+                }
+
+                if(document.forms[0].password.value == "") {
+                     $("#ppct-loginerror").show();
+                    return false;
+                }
+				document.forms[0].username.value = curUsername.trim() ;
+                document.forms[0]['pf.ok'].value = 'clicked';
+
+                return true;
+
+            },
+           postOnReturn: function (e){
+                var keycode;
+                if (window.event) keycode = window.event.keyCode;
+                else if (e) keycode = e.which;
+                else return true;
+                if (keycode == 13){
+                    return ppctSignIn.postOk();
+                }
+             },
+            onclickSignin:function(){
+                $("#ppctLoginSubmit").trigger("click");
+                return false;
+            },
+            setFocus: function () {
+                var platform = navigator.platform;
+				if(platform != null && platform.indexOf("iPhone") == -1) {
+											document.getElementById('username').focus();
+					         	      }
+            },
+            getParamVal: function(urlParamNm){
+                var pageUrl = window.location.search.substring(1);
+                var urlParamArr = pageUrl.split('&');
+                for (var i = 0; i < urlParamArr.length; i++){
+                    var paramNm = urlParamArr[i].split('=');
+                    if (paramNm[0] == urlParamNm){
+                        return paramNm[1];
+                    }
+                }
+                return null;
+            },
+            bindCreateAccountLink:function(){
+	            $("#coll_create_acc").click(function(evt){
+	            	evt.stopPropagation();
+	            	evt.preventDefault();
+	            	var nextPageUrl = ppctSignIn.getParamVal("TARGET");
+	            	if(nextPageUrl==null){
+	            		nextPageUrl="https://ieee-collabratec.ieee.org/rest/signin";
+	            	}
+	            	var createAccUrl = "https://www.ieee.org/profile/public/createwebaccount/showCreateAccount.html?ShowMGAMarkeatbilityOptIn=true&sourceCode=collabratec&url="+nextPageUrl+"&signinurl="+nextPageUrl;
+	            	document.location.href=createAccUrl;
+	            	return false;
+	            });
+
+            }
+        };
+
+    </script>
+    <style>
+    	.ppct-loginerror{
+			display: none;
+		    color: #f00;
+		    padding: 15px;
+		    margin-bottom: 10px;
+		    border: 1px solid #f00;
+		    border-radius: 5px;
+		    background: #fcf5df;
+		}
+
+		.ppct-loginerror p {
+		    color: #f00;
+		    margin: 0 0 5px 5px;
+		}
+    </style>
+</head>
+<body onload="ppctSignIn.setFocus()">
+<!--[if lte IE 8]>
+<style>
+   .sign-in{background:#ffffff;}
+</style>
+<script src="https://ieee-collabratec.ieee.org/assets/ping/js/libs/html5shiv.js" type="text/javascript"></script>
+<script src="https://ieee-collabratec.ieee.org/assets/ping/js/libs/respond.min.js" type="text/javascript"></script>
+<![endif]-->
+
+
+
+<div id="page">
+	<div id="header-menu" class="navbar navbar-static-top">
+		<div class="container">
+			<a href="https://ieee-collabratec.ieee.org/" id="mobile-logo" class="visible-xs pull-left">
+				<img src="https://ieee-collabratec.ieee.org/assets/ping/img/collabratec_logo_tablet_img.png" alt="IEEE Collabratec&reg; Logo" width="40">
+			</a>
+			<ul class="sites-menu-links nav navbar-nav hidden-xs">
+				<li><a href="http://www.ieee.org/index.html"><i class="home-icon visible-xs"></i>IEEE.org</a></li>
+				<li><a href="http://ieeexplore.ieee.org/">IEEE <i>Xplore</i> Digital Library</a></li>
+				<li><a href="http://standards.ieee.org/">IEEE Standards</a></li>
+				<li><a href="http://spectrum.ieee.org/">IEEE Spectrum</a></li>
+				<li><a href="http://www.ieee.org/sitemap.html">More Sites</a></li>
+			</ul>
+			<ul class="nav navbar-nav pull-right hidden-xs">
+				<li><a href="http://www.ieee.org/membership_services/membership/join/index.html">Join IEEE</a></li>
+			</ul>
+		</div>
+	</div><!-- /#header-menu -->
+
+	<div id="banner" class="hidden-xs">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-4 no-padd padd-xs">
+					<a href="https://ieee-collabratec.ieee.org/" id="logo" class="hidden-sm pull-left">
+						<img class="img-responsive" src="https://ieee-collabratec.ieee.org/assets/ping/img/collabratec_logo_img.png" alt="IEEE Collabratec™ Logo">
+					</a>
+					<a href="https://ieee-collabratec.ieee.org/" id="logo-tablet" class="visible-sm pull-left">
+						<img src="https://ieee-collabratec.ieee.org/assets/ping/img/collabratec_logo_img.png" alt="IEEE Collabratec™ Logo" width="210">
+					</a>
+				</div>
+
+				<div class="hidden-xs col-xs-12 col-sm-6 col-md-5 no-padd">
+					<div class="header-search-box"><div id="header-landing-page">
+
+					</div>
+					</div>
+				</div>
+
+				<div class="hidden-xs col-xs-12 col-sm-2 col-md-3 no-padd">
+					<a href="http://www.ieee.org/" target="_blank" id="ieee-logo">
+						<img class="img-responsive pull-right" src="https://ieee-collabratec.ieee.org/assets/ping/img/ieee_logo.png" alt="IEEE Logo">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div> <!-- /#banner-->
+
+	<!-- Content -->
+	<div id="content" class="container">
+		<div id="bg-images"></div>
+		<div class="no-padd-xs">
+			<div class="sign-in">
+				<h1>IEEE Account Sign In</h1>
+
+				<div id="login-required" class="ppct-login-required-text" style="display:none;margin-left:16px;">
+					<p style="color:red;">Login is required to continue.</p>
+				</div>
+
+				<div class="ppct-loginerror" id="ppct-loginerror">
+					<p>The email address and password combination you entered does not match our records. Please try again.</p>
+					<p>Please visit <a class="err-msg-link" href="https://supportcenter.ieee.org" target="_blank">IEEE Support Center</a> if you feel you have received this message in error.</p>
+					<p>If you are signing in with a username other than an email address, please review this <a class="err-msg-link" href="https://supportcenter.ieee.org/app/answers/detail/a_id/320/kw/username" target="_blank">this FAQ</a> on how to update it.</p>
+                </div>
+
+                				<form id="sign_in_submit" name="sign_in_submit"  action="/as/GbtkY/resume/as/authorization.ping" method="POST" onsubmit="return ppctSignIn.postOk();" autocomplete="off" class="col-xs-12 col-sm-6 col-md-6">
+					<label for="username">
+						<span class="ppct-form-controls">E-mail Address:</span>
+						<span class="ppct-form-controls"><input onKeyPress="return ppctSignIn.postOnReturn(event)" size="36" name="pf.username" value="" type="text" id="username"></span>
+					</label>
+					<label for="password">
+						<span class="ppct-form-controls">Password:</span>
+						<span class="ppct-form-controls"><input onKeyPress="return ppctSignIn.postOnReturn(event)" size="36" name="pf.pass" type="password" id="password"></span>
+					</label>
+                <input type="hidden" name="pf.ok" value=""/>
+                <input type="hidden" name="pf.cancel" value=""/>
+                <input type="submit" class="ppct-login-submit" id="ppctLoginSubmit" name="submit" />
+					<a href="#" onclick="return ppctSignIn.onclickSignin();" class="btn btn-sign-in"><img src="https://ieee-collabratec.ieee.org/assets/ping/img/ieee_btn_logo.png" width="40" alt="">Sign in</a>
+				</form>
+				<div class="col-xs-12 col-sm-6 col-md-6 links">
+					<p><a id="coll_create_acc"  href="https://www.ieee.org/profile/public/createwebaccount/showCreateAccount.html?ShowMGAMarkeatbilityOptIn=true&sourceCode=collabratec&url=https://ieee-collabratec.ieee.org/rest/signin&signinurl=https://ieee-collabratec.ieee.org/rest/signin">New users, create your free IEEE account &gt;</a></p><p>
+					<a href="https://www.ieee.org/profile/public/forgotpassword/forgotUsernamePassword.html?sourceCode=collabratec&url=https://ieee-collabratec.ieee.org/rest/signin&signinurl=https://ieee-collabratec.ieee.org/rest/signin">Forgot password ?</a></p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!-- /Content -->
+
+	<div id="footer" class="col-xs-12 no-padd">
+		<div class="container no-padd padd-left-sm padd-right-sm">
+			<div class="hidden-xs">
+				<div class="navigation col-xs-12 col-sm-4 col-md-3 no-padd-right">
+					<h4>IEEE Collabratec</h4>
+					<ul class="footer-menu-links">
+						<li id="menu-connect-network"><a href="https://ieee-collabratec.ieee.org#connect-network">Connect & Network</a></li>
+						<li id="menu-trending"><a href="https://ieee-collabratec.ieee.org#trending">Trending</a></li>
+						<li id="menu-community-spotlight"><a href="https://ieee-collabratec.ieee.org#community-spotlight">Community Spotlight</a></li>
+					</ul>
+				</div>
+				<div class="contact col-xs-12 col-sm-4 col-md-3 no-padd-right-sm">
+					<h4>Contact and Support</h4>
+					<ul class="footer-contact-menu-links">
+
+						<li id="f-guide"><a href="https://sites.google.com/a/ieee.org/ieee-collabratec" target="_blank"> User Guide </a>
+						</li>
+						<li id="f-faq"><a href=" https://supportcenter.ieee.org/app/answers/list/p/1971" target="_blank"> FAQ </a></li>
+						<li id="f-feedback"><a href="https://supportcenter.ieee.org/ci/documents/detail/5/35/12/4d4d5104ea263f47dde44d14ecd61717f2ab9712"> Feedback </a></li>
+						<li id="f-mailto"><a href="mailto:IEEE-Collabratec-Advertising@ieee.org?subject=%20Interested%20in%20Advertising%20on%20IEEE%20Collabratec&amp;body=PLEASE%20INCLUDE%20YOUR%20CONTACT%20INFORMATION%20HERE%20and%20someone%20will%20be%20in%20touch%20with%20you%20regarding%20your%20interest%20in%20IEEE%20Collabratec%20advertising.">Advertise on IEEE Collabratec</a></li>
+					</ul>
+				</div>
+				<div class="legal col-xs-12 col-sm-4 col-md-3 no-padd-right-sm">
+					<h4>Legal</h4>
+					<ul class="footer-legal-menu-links">
+						<li id="f-terms">
+							<a href="http://www.ieee.org/ieee_collabratec_terms_of_use.html?WT.mc_id=cf_terms">Terms of Use</a>
+						</li>
+						<li id="f-copyright"><a
+							href="http://www.ieee.org/ieee_collabratec_terms_of_use.html?WT.mc_id=cf_terms_cr#sect3">
+								Copyright Policy </a></li>
+						<li id="f-nondis"><a
+							href="http://www.ieee.org/p9-26.html?WT.mc_id=hpf_cf_nondis">
+								Nondiscrimination Policy </a></li>
+						<li id="f-privacy"><a
+							href="http://www.ieee.org/security_privacy.html?WT.mc_id=hpf_cf_privacy">
+								Privacy &amp; Opting Out of Cookies </a></li>
+						<li id="f-accesibility"><a
+							href=" http://www.ieee.org/accessibility_statement.html?WT.mc_id=cf_acc">
+								Accessibility </a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="visible-xs" id="mobile-footer-links">
+				<div class="navigation col-xs-12 col-sm-4 col-md-3">
+					<div class="collapse-title">
+						<h4>IEEE Collabratec</h4>
+						<i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i>
+					</div>
+					<ul class="footer-menu-links collapse-menu">
+						<li id="m-menu-connect-network"><a href="https://ieee-collabratec.ieee.org#connect-network">Connect & Network</a></li>
+						<li id="m-menu-trending"><a href="https://ieee-collabratec.ieee.org#trending">Trending</a></li>
+						<li id="m-menu-community-spotlight"><a href="https://ieee-collabratec.ieee.org#community-spotlight">Community Spotlight</a></li>
+					</ul>
+				</div>
+				<div class="contact col-xs-12 col-sm-4 col-md-3">
+					<div class="collapse-title">
+						<h4>Contact and Support</h4>
+						<i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i>
+					</div>
+					<ul class="footer-contact-menu-links collapse-menu"
+						style="display: none;">
+
+						<li id="m-f-guide"><a href="https://sites.google.com/a/ieee.org/ieee-collabratec" target="_blank"> User Guide </a>
+						</li>
+						<li id="m-f-faq"><a href=" https://supportcenter.ieee.org/app/answers/list/p/1971" target="_blank"> FAQ </a></li>
+						<li id="m-f-feedback"><a href="https://supportcenter.ieee.org/ci/documents/detail/5/35/12/4d4d5104ea263f47dde44d14ecd61717f2ab9712"> Feedback </a></li>
+						<li id="m-f-mailto"><a href="mailto:IEEE-Collabratec-Advertising@ieee.org?subject=%20Interested%20in%20Advertising%20on%20IEEE%20Collabratec&amp;body=PLEASE%20INCLUDE%20YOUR%20CONTACT%20INFORMATION%20HERE%20and%20someone%20will%20be%20in%20touch%20with%20you%20regarding%20your%20interest%20in%20IEEE%20Collabratec%20advertising.">Advertise on IEEE Collabratec</a></li>
+					</ul>
+				</div>
+				<div class="legal col-xs-12 col-sm-4 col-md-3">
+					<div class="collapse-title">
+						<h4>Legal</h4>
+						<i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i>
+					</div>
+					<ul class="footer-legal-menu-links collapse-menu"
+						style="display: none;">
+						<li id="m-f-terms">
+							<a href="http://www.ieee.org/ieee_collabratec_terms_of_use.html?WT.mc_id=cf_terms">Terms of Use</a>
+						</li>
+						<li id="m-f-copyright"><a
+							href="http://www.ieee.org/ieee_collabratec_terms_of_use.html?WT.mc_id=cf_terms_cr#sect3">
+								Copyright Policy </a></li>
+						<li id="m-f-nondis"><a
+							href="http://www.ieee.org/p9-26.html?WT.mc_id=hpf_cf_nondis">
+								Nondiscrimination Policy </a></li>
+						<li id="m-f-privacy"><a
+							href="http://www.ieee.org/security_privacy.html?WT.mc_id=hpf_cf_privacy">
+								Privacy &amp; Opting Out of Cookies </a></li>
+						<li id="m-f-accesibility"><a
+							href=" http://www.ieee.org/accessibility_statement.html?WT.mc_id=cf_acc">
+								Accessibility </a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="about col-xs-12 col-sm-12 col-md-3 no-padd-right">
+				<div class="clearfix"></div>
+				<h4>About IEEE</h4>
+				<div class="col-xs-12 col-sm-9 col-md-12 no-padd">
+					<p id="rights">
+						<span>A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+						</span>
+					</p>
+				</div>
+				<div class="footer-logo col-xs-12 col-sm-3 hidden-xs no-padd">
+					<a class="pull-right" href="http://www.ieee.org/" target="_blank">
+						<img src="https://ieee-collabratec.ieee.org/assets/ping/img/ieee_logo.png" alt="Logo" width="150">
+					</a>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="col-xs-12 no-padd padd-xs">
+				<div class="copyright col-xs-12 no-padd">
+					<p class="text-left">
+						&copy; Copyright <span id="collCurYr"></span>  IEEE - All rights reserved. Use of this Web site
+						signifies your agreement to the IEEE Collabratec&reg; <a
+							href="http://www.ieee.org/ieee_collabratec_terms_of_use.html?WT.mc_id=cf_terms">terms
+							of use</a>.
+					</p>
+				</div>
+			</div>
+			<div class="big-spacer clearfix"></div>
+		</div>
+	</div>
+	<!-- /#footer-menu -->
+</div>
+
+<script src="https://ieee-collabratec.ieee.org/assets/ping/js/libs/jquery/jquery.js" type="text/javascript"></script>
+
+<!-- Twitter Bootstrap -->
+<script src="https://ieee-collabratec.ieee.org/assets/ping/js/libs/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+<!-- /Twitter Bootstrap -->
+
+<!-- jQuery.mmenu -->
+<script src="https://ieee-collabratec.ieee.org/assets/ping/js/libs/mmenu/jquery.mmenu.min.all.js" type="text/javascript"></script>
+<script src="https://ieee-collabratec.ieee.org/assets/ping/js/utils/mobile_menu.js" type="text/javascript"></script>
+<!-- /jQuery.mmenu -->
+
+<script>
+$(document).ready(function() {
+	try{
+
+
+		//Random images
+		var promoArrays = [
+			[ "01.jpg",   "02.jpg"   ], //1st composition
+			[ "02.jpg",   "03.jpg"   ], //2nd composition
+			[ "03.jpg",   "01.jpg"   ]  //3rd composition
+			//[ "abstract.jpg", "abstract.jpg" ], //1st composition
+			//[ "dust.jpg", "dust.jpg" ], //2nd composition
+			//[ "robot.jpg", "robot.jpg" ], //3rd composition
+			//[ "space.jpg", "space.jpg" ]  //4th composition
+		];
+
+		var randomArray = promoArrays[Math.floor(Math.random() * 100 * promoArrays.length) % promoArrays.length];
+
+		var bgs = '';
+
+		for(var i in randomArray) {
+			bgs += '<img src="https://ieee-collabratec.ieee.org/assets/ping/img/bg/'+ randomArray[i] +'" alt="bg">';
+		}
+
+		$('#bg-images').html(bgs);
+
+		$('#mobile-footer-links .footer-contact-menu-links, #mobile-footer-links .footer-legal-menu-links').slideUp();
+		$('.collapse-title').unbind('touchstart').on('touchstart', function() {
+			var item = $(this);
+
+			if (item.hasClass('active')) {
+				item.removeClass('active');
+				item.next('.collapse-menu').slideUp(200);
+			} else {
+				item.addClass('active');
+				item.next('.collapse-menu').slideDown(200);
+			}
+		});
+
+
+		ppctSignIn.bindCreateAccountLink();
+
+		var curYear = (new Date()).getFullYear();
+		$("#collCurYr").html(curYear);
+
+		$('#mobile-footer-links ul').each(function(){
+			$(this).slideUp('fast');
+		});
+
+		$('#footer .collapse-title').unbind('touchstart click').on('touchstart click', function() {
+			event.stopPropagation();
+			event.preventDefault();
+			if(event.handled !== true) {
+				// Do your magic here.
+				var item = $(this);
+
+				if (item.hasClass('active')) {
+					item.next('.collapse-menu').slideUp(200, function(){
+						item.removeClass('active');
+					});
+				} else {
+					item.next('.collapse-menu').slideDown(200, function(){
+						item.addClass('active');
+					});
+				}
+				// /Do your magic here.
+
+				event.handled = true;
+			} else {
+				return false;
+			}
+		});
+
+		if(document.cookie.indexOf("_ie_ct_pt")!==-1) {
+			$('div#login-required').show();
+		}
+	}catch(e){}
+});
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFPZ07PYEZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WFPZ07PYEZ', {
+	  'linker':{
+		  'accept-incoming':true,
+		  'domains':['https://ieee-collabratec.ieee.org']
+	  }
+  });
+</script>
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+try{
+	 ga('create', 'UA-4930232-10', 'auto', {'allowLinker': true});
+	 ga('require', 'linker');
+	 ga('linker:autoLink',['https://ieee-collabratec.ieee.org']);
+
+
+
+}catch(e){}
+
+</script>
+
+</body>
+</html>
